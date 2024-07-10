@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="container">
+   <div class="row">
+      <div class="col-md-4 offset-md-4 card card-body mt-5">
+
+         <h1 class="text-center py-3">Update</h1>
+
+         {{ error }}
+
+         <form class="mx-3 pt-3" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="btn btn-primary ">
+               Update
+            </button>
+
+         </form>
+
+         <div class="mt-3 d-flex algin-items-stretch justify-content-between">
+
+          
+            <form class="px-3" action="{% url 'task_complete' task.id %}" method="POST">
+               {% csrf_token %}
+
+               <button class="btn btn-success">
+                  Complete
+               </button>
+
+            </form>
+
+            <form class="mx-5" action="{% url 'task_delete' task.id %}" method="POST">
+               {% csrf_token %}
+
+               <button class="btn btn-danger">
+                  Delete
+               </button>
+
+            </form>
+         </div>
+      </div>
+   </div>
+</main>
+
+
+{% endblock %}

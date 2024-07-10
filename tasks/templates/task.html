@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="container-fluid py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center py-3">Task Pending</h1>
+        <ul class="list-group">
+            {% for task in tasks %}
+            <a class="list-group-item" href="{% url 'task_detail' task.id %}">
+                <header class="d-flex justify-content-between">
+                    {% if task.important %}
+                    <h4 class="fw-bold text-success">Important:
+                    {{ task.title }}
+                    </h4>
+                    
+                    {{ task.dateclompleted|date:'M j Y:i' }}
+                   
+                    {% else %}
+                    <h4 class="fw-bold text-secondary">
+                        {{ task.title }}
+                    </h4> 
+                    {{ task.dateclompleted|date:'M j Y:i' }}
+                    {% endif %}
+                    {{ task.user.username }}
+                </header>
+            </a>
+           
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+
+{% endblock %}
